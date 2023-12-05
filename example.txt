@@ -1,0 +1,65 @@
+bitten  aux  toleration  lucia  scar  bohemian  vested  affinity  carlo  sous  penitent  simpson  abiding  ca  immoral  dishonest  yawning  mustache  supplement  whirlwind  clash  terence  lamentable  bennett  farthing  speck  biscuit  appellation  gdp  reserves  uncouth  birch  armchair  judy  greasy  leaden  dough  lining  cleverness  ascetic  clutch  krishna  embark  quotations  friendliness  liberally  trance  untrue  rejection  grating  hanover  inexperienced  mon  wintry  stalwart  meats  stamping  variance  apiece  firmament  absorption  apprehensive  terminate  wilful  conveniently  'n'  cleanliness  collective  angela  filth  philippines  timely  herein  ignoble  canton  lamentations  moslem  ware  adjective  glen  invade  livid  buggy  prolong  weaken  folio  dismissal  quay  enchanting  heave  purified  syrian  significantly  experimental  film  repressed  cooperation  sequel  wench  calves  
+Retrieved from "http //en wiktionary org/wiki/Wiktionary Frequency_lists/PG/ / / "
+
+def g():
+  global big
+  big = file('big.txt').read()receive_acknowledgment(control_socket)
+
+
+Data Channel Implementation:
+
+The data channel, utilizing UDP, is responsible for the actual file transfer. The server transmits data packets, and the client acknowledges their receipt. This implementation embraces the connectionless nature of UDP for efficient data transfer.
+
+# Server-side Data Channel Implementation  Pseudo code
+data_socket = create_udp_socket()
+bind(data_socket, 'localhost', 5001)
+
+for packet in data_packets:
+    send_to(data_socket, packet, 'localhost', 5001)
+    wait_for_acknowledgment(data_socket)
+
+# Client-side Data Channel Implementation  Pseudo code
+data_socket = create_udp_socket()
+
+for _ in range(total_packets):
+    packet, addr = receive_from(data_socket, 1024)
+    process_data_packet(packet)
+    send_acknowledgment(data_socket, 'localhost', 5001)
+
+Checksum Implementation
+
+The checksum is calculated for each packet of data before it is sent. The receiving end can then use this checksum to verify whether the received data matches what was originally sent. If there is any corruption or error during transmission, the checksums will likely not match, signaling a problem. Before sending each packet, the checksum is calculated for each data. This checksum is added to each data packet before sending. When receiving a packet, extract the checksum and verify it against the received data. If the checksums match, the data is likely intact; otherwise, it might be corrupted.
+
+Timeout Mechanism
+
+	The socket. Timeout exception is used to detect when the acknowledgment is not received within the specified timeout period. This timeout acts as a signal for potential packet loss, prompting the client to retransmit the packet.
+V.	RESULTS
+
+
+A.	Performance Comparison with TCP-based File Transfer:
+To evaluate the efficacy of the proposed algorithm utilizing a hybrid approach of TCP for the control channel and UDP for the data channel, a comprehensive performance comparison was conducted against traditional TCP-based file transfer mechanisms. The comparison was carried out across a spectrum of file sizes, ranging from 1KB to 100MB...
+The experiments were conducted on a local machine equipped with 16GB RAM, utilizing files of varying sizes: 1KB, 1MB, 10MB, and 100MB. Both the proposed algorithm and the TCP-based file transfer mechanism were subjected to identical network conditions and configurations to ensure a fair evaluation.
+The results of the comparative analysis reveal notable distinctions in the performance of the two approaches. For smaller file sizes (1KB), the overhead introduced by the control channel in the hybrid approach slightly impacted the overall transfer time compared to TCP. However, as the file size increased, the efficiency of the hybrid approach became more apparent.
+
+In the case of moderate-sized files (1MB and 10MB), the hybrid approach demonstrated a reduction in transfer time compared to traditional TCP. This improvement is attributed to the parallelism introduced by the UDP-based data channel, optimizing the overall data transfer process. Notably, as file sizes continued to scale up to 100MB, the hybrid approach showcased a more pronounced advantage over TCP, emphasizing its scalability and suitability for handling large volumes of data.
+B.	Hybrid Structure with Checksum (UDP for Data Transfer and TCP for Control)
+In the hybrid structure, where UDP is used for data transfer and TCP for control, implementing a checksum mechanism adds an extra layer of reliability to UDP. The checksum is calculated on the sender's side and verified on the receiver's side to detect any corruption during transmission. This ensures that the data received is the same as the data sent, enhancing the reliability of the UDP-based data channel.
+
+Advantages:
+
+a.	Faster Speed: Compared to pure TCP, UDP typically offers faster transmission speeds due to its connectionless nature. With the added checksum for integrity, the hybrid structure combines the speed of UDP with improved reliability.
+b.	Reduced Latency: The lack of handshaking and acknowledgment delays in UDP contributes to lower latency. The checksum helps maintain this speed while providing error detection.
+
+Challenges:
+
+a.	Packet Overhead: Adding a checksum increases the size of each packet, introducing a slight overhead. However, the impact is generally minimal compared to the benefits of enhanced reliability
+
+  N = len(big)
+  s = set()
+  for i in xrange(6, N):
+    c = big[i]
+    if ord(c) > 127 and c not in s:
+        print i, c, ord(c), big[max(0, i-10):min(N, i+10)]
+        s.add(c)
+  print s
+  print [ord(c) for c in s]
